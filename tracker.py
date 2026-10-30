@@ -1,6 +1,5 @@
-#Project: Expense Tracker - Installment 3
+#Project: Expense Tracker - Installment 4
 #Author: Kezziah Faith C. Azaña
-#Description: A simple landing page
 
 print("=" * 40)
 print("\t\tEXPENSE TRACKER")
@@ -22,11 +21,32 @@ item1 = input("\nFirst expense? ")
 amount1 = float(input("Amount? "))
 subtotal += amount1
 
+if amount1 > 200:
+    print("  Huge expense - are you sure?")
+elif amount1 > 100:
+    print("  Big expense.")
+elif amount1 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
 subtotal += amount2
 
-average = subtotal/2
+if amount2 > 200:
+    print("  Huge expense - are you sure?")
+elif amount2 > 100:
+    print("  Big expense.")
+elif amount2 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
+if amount1 > 100 and amount2 > 100:
+    print("Two big expenses in a row - slow down!")
+
+average = subtotal / 2
 
 tax_percent = int(input("Tax rate %? "))
 tax = subtotal * (tax_percent / 100)
@@ -42,7 +62,6 @@ subtotal_text = f"${subtotal:.1f}"
 average_text = f"${average:.2f}"
 tax_text = f"${tax:.1f}"
 total_text = f"${total:.1f}"
-left_text = f"${left:.1f}"
 
 
 print(f"\n{"-" * 40}")
@@ -53,7 +72,14 @@ print(f"{"Subtotal:":<20}\t{subtotal_text}")
 print(f"{"Average:":<20}\t{average_text}")
 print(f"{"Tax (" + str(tax_percent) + "%):":<20}\t{tax_text}")
 print(f"{"Grand Total:":<20}\t{total_text}")
-print(f"{"Over budget?:":<20}\t{over_budget}")
-print(f"{"Left in budget:":<20}\t{left_text}")
-print("-" * 40)
-print("Made by: Kezziah Faith C. Azaña | Installment 3")
+
+if over_budget:
+    over = total - budget
+    print(f"Over budget by ${over:.1f}!")
+elif total > budget * 0.90:
+    print(f"Careful: only ${left:.1f} left.")
+else:
+    print(f"Within budget. ${left:.1f} left.")
+
+print(f"{"-" * 40}")
+print("Made by: Kezziah Faith C. Azaña | Installment 4")
